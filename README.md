@@ -44,6 +44,7 @@ The model was trained on the following features:
 
 A custom loss function was defined based on the pseudo-huber loss (in lieu of MAE). An early-stopping algorithm based on the RMSE of a cross-validation set (20% of the dataset) was introduced, with early stopping rounds fixed to 100.
 
+```
 def xgb_regressor_custom_loss(x, y, x_test, x_val, y_val):
     def custom_loss(y_pred, y_val):
         d = (y_val-y_pred)
@@ -53,7 +54,6 @@ def xgb_regressor_custom_loss(x, y, x_test, x_val, y_val):
         grad = d / scale_sqrt + 2 * d
         hess = (1 / scale) / scale_sqrt + 2
         return grad, hess
-    
     model = xgb.XGBRegressor(n_estimators=5000,
                        early_stopping_rounds=100,
                        objective = custom_loss,
@@ -62,9 +62,9 @@ def xgb_regressor_custom_loss(x, y, x_test, x_val, y_val):
                        learning_rate=0.01)
     model.fit(x, y,
         eval_set=[(x, y), (x_val, y_val)], verbose = 500)
-
     y_hat = model.predict(x_test)
     return(y_hat)
+```
 
 ### 4: XGBoost with custom loss function and early-stopping  + only wind features
 The model was trained on the following features: 
