@@ -42,7 +42,7 @@ The default parameter settings of the model can be found here: https://xgboost.r
 The model was trained on the following features: 
 'wind_speed', 'wind_speed_sensor1', 'wind_speed_sensor1_SD', 'wind_speed_sensor2', 'wind_speed_sensor2_SD', 'density_adjusted_wind_speed', 'wind_direction', 'nacelle_position', 'wind_direction_SD', 'nacelle_position_SD', 'nacelle_ambient_temperature', 'TI','Day.Night'
 
-A custom loss function was defined based on a combination of RMSE and pseudo-huber loss (in lieu of MAE). An early-stopping algorithm based on the RMSE of a cross-validation set was introduced, with early stopping rounds fixed to 100.
+A custom loss function was defined based on the pseudo-huber loss (in lieu of MAE). An early-stopping algorithm based on the RMSE of a cross-validation set (20% of the dataset) was introduced, with early stopping rounds fixed to 100.
 
 def xgb_regressor_custom_loss(x, y, x_test, x_val, y_val):
     def custom_loss(y_pred, y_val):
