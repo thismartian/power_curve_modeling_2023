@@ -66,7 +66,7 @@ def xgb_regressor_custom_loss(x, y, x_test, x_val, y_val):
     y_hat = model.predict(x_test)
     return(y_hat)
 
-### 4: XGBoost with custom loss function and early-stopping + all features
+### 4: XGBoost with custom loss function and early-stopping  + only wind features
 The model was trained on the following features: 
 'wind_speed', 'wind_speed_sensor1', 'wind_speed_sensor1_SD', 'wind_speed_sensor2', 'wind_speed_sensor2_SD', 'density_adjusted_wind_speed'
 
